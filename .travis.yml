@@ -3,10 +3,10 @@ python:
   - "3.6.3"
 before_install:
   - mv travis_secrets.yaml secrets.yaml
-#  - touch ./fake_id_rsa
+  - touch ./fake_id_rsa
   - touch ./home-assistant_v2.db
   - touch ./home-assistant.log
-#  - touch ./fake_cert.pem
+  - touch ./fake_cert.pem
 install:
   - pip3 install homeassistant
   - hass --version
