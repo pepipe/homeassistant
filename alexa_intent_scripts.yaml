@@ -1,0 +1,59 @@
+###########################################################
+#                                                         #
+#                  Alexa Intent Scripts                   #
+#                                                         #
+#          Need an amazon developer account               #
+#                Define alexa skills                      #
+#   Make sure Intents names match the ones in this file   #
+#                                                         #
+#      Invocation name set in amazon: home assistant      #
+#                                                         #
+###########################################################
+
+###########################################################
+#                                                         #
+#                  Commands Intents                       #
+#                                                         #
+###########################################################
+#{OnOff} = On, Off
+#Utterances: "Alexa ask {invocation name} turn lighs {OnOff}"
+TurnLightsIntent:
+  speech:
+    text: Turning lights {{ OnOff }}
+  card:
+    type: simple
+    title: Turn lights {{ OnOff }}
+    content: Ask Home Assistant to turn lights {{ OnOff }}
+  action:
+    service_template: >
+      light.turn_{{ OnOff }}
+    data:
+      entity_id: light.innr
+
+###########################################################
+#                                                         #
+#                  Custom Intents                         #
+#                                                         #
+###########################################################
+#Utterances: 
+#             "Alexa ask {invocation name} who's the smartest"
+#             "Alexa ask {invocation name} who's the smartest person"
+SmartestPersonIntent:
+  speech:
+    text: The smartest person in the house is <lang xml:lang="es">Felipe</lang>
+
+#{RelativeDay} = this month, this week, after tomorrow, tomorrow, today
+#Utterances: "Alexa ask {invocation name} who will cook {RelativeDay}"
+WhoWillCookIntent:
+  speech:
+    type: ssml
+    text: <speak>Maria will cook {{ RelativeDay }}.<break time="1s"/><emphasis>Hahaha I got you.</emphasis><break time="0.2s"/>Of course it will be you Felipe.</speak>
+
+#Utterances: 
+#             "Alexa ask {invocation name} person to change diaper"
+#             "Alexa ask {invocation name} who will change diaper"
+#             "Alexa ask {invocation name} who will change next diaper"
+ChangeDiaperIntent:
+  speech:
+    type: ssml
+    text: <speak>Humm.<break time="0.4s"/>Let me think.<break time="0.8s"/>The next diaper will be changed by Maria</speak>

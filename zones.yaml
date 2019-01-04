@@ -1,0 +1,19 @@
+##########################################################
+#                                                        #
+#                       Zones                            #
+#                                                        #
+#    https://www.home-assistant.io/components/zone/      #
+#                                                        #
+##########################################################
+# This will override the default home zone
+- name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  radius: 50
+  icon: mdi:account-multiple
+  
+- name: Gym
+  latitude: 38.747179
+  longitude: -9.186843
+  radius: 200
+  icon: mdi:bike

@@ -1,0 +1,118 @@
+###########################################################
+#                                                         #
+#                     Automations                         #
+#                                                         #
+#    https://www.home-assistant.io/docs/automation        #
+#  https://www.home-assistant.io/docs/automation/editor   #
+# https://www.home-assistant.io/docs/automation/examples  #
+#                                                         #
+#  This is in the old format. I used it because editor    #
+# removes comments and don't support data templates       #
+###########################################################
+
+##########################################################
+#                                                        #
+#                       Doors                            #
+#                                                        #
+##########################################################
+# Trigger for turning on one light when exit door is open
+- alias: Turn on light when exit door is open
+  # Initial state after home assistant restart
+  # initial_state: 'off'
+  # To hide this automation from web frontend set this to true
+  # hide_entity: False
+  trigger:
+    platform: state
+    entity_id: binary_sensor.exit_door
+    to: 'on'
+  #create condition to trigger
+  condition:
+  - after: sunset
+    after_offset: -01:00:00
+    before: sunrise
+    before_offset: 01:00:00
+    condition: sun
+  action:
+    service: light.turn_on
+    entity_id: light.innr
+
+# Trigger for turning off one light after 5 minutes than exit door is open 
+- alias: Turn off light 5 minutes after exit door is open
+  trigger:
+    platform: state
+    entity_id: binary_sensor.exit_door
+    to: 'off'
+    for:
+      minutes: 5
+  condition:
+  - after: sunset
+    after_offset: -01:00:00
+    before: sunrise
+    before_offset: 01:00:00
+    condition: sun
+  action:
+    service: light.turn_off
+    entity_id: light.innr
+
+##########################################################
+#                                                        #
+#                   Notifications                        #
+#                                                        #
+##########################################################
+# Trigger for sending a notification when exit door is open
+- alias: iOS notification when exit door is opened
+  trigger:
+    platform: state
+    entity_id: binary_sensor.exit_door
+    to: 'on'  
+  action:
+    service: notify.ios_felipes_iphone
+    data:
+      title: "HomeAssistant - Exit Door"
+      message: "Exit Door Opened"
+      data:
+        push:
+          category: 'exit_door'
+        #this doesn't work. don't know why. 
+        # action_data:
+          # entity_id: light.innr
+          # service: light.turn_on
+          
+# This is the notification button action (from exit_door)
+- alias: Push exit_door Action Light On
+  hide_entity: true
+  trigger:
+    platform: event
+    event_type: ios.notification_action_fired
+    event_data:
+      actionName: EXIT_DOOR_OPEN
+  action:
+    entity_id: light.innr
+    service: light.turn_on
+    
+##########################################################
+#                                                        #
+#                      Themes                            #
+#                                                        #
+##########################################################
+# Sunset
+- alias: Random Darker Theme At Sunset
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: '{{ ["darkred", "darkcyan", "midnight", "darkorange", "darkblue", "oxforddark", "teal"] | random  }}'
+
+# Sunrise
+- alias: Random Lighter Theme At Sunrise
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunrise
+  action:
+    - service: frontend.set_theme
+      data_template:
+        name: '{{ ["default", "oxfordblue", "carbongreen", "minimal", "stormy_hues", "vintage"] | random  }}'

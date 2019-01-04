@@ -1,0 +1,18 @@
+##########################################################
+#                                                        #
+#             iOS component settings here                #
+#                                                        #
+#   https://www.home-assistant.io/docs/ecosystem/ios/    #
+##########################################################
+#push notification for when exit door is opened
+push:
+  categories:
+    - name: Exit_Door
+      identifier: 'exit_door'
+      actions:
+        - identifier: 'EXIT_DOOR_OPEN'
+          title: 'Turn Lights On'
+          activationMode: 'background'
+          authenticationRequired: no
+          destructive: no
+          behavior: 'default'
