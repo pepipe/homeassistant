@@ -1,0 +1,11 @@
+#Ignore folder
+.storage
+.cloud
+
+#Secret data files
+secrets.yaml
+know_devices.yaml
+
+#other files
+*.log
+*.db
