@@ -9,3 +9,4 @@ know_devices.yaml
 #other files
 *.log
 *.db
+.ios.conf
