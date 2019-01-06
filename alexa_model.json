@@ -1,0 +1,188 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "home assistant",
+            "intents": [
+                {
+                    "name": "TurnLightsIntent",
+                    "slots": [
+                        {
+                            "name": "OnOff",
+                            "type": "OnOff"
+                        }
+                    ],
+                    "samples": [
+                        "Turn lights {OnOff}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SmartestPersonIntent",
+                    "slots": [],
+                    "samples": [
+                        "Who's the smartest",
+                        "Who's the smartest person"
+                    ]
+                },
+                {
+                    "name": "WhoWillCookIntent",
+                    "slots": [
+                        {
+                            "name": "RelativeDay",
+                            "type": "RelativeDay"
+                        }
+                    ],
+                    "samples": [
+                        "Who will cook {RelativeDay}"
+                    ]
+                },
+                {
+                    "name": "ChangeDiaperIntent",
+                    "slots": [],
+                    "samples": [
+                        "Person to change diaper",
+                        "Who will change diaper",
+                        "Who will change next diaper"
+                    ]
+                },
+                {
+                    "name": "TurnLightsBrightnessIntent",
+                    "slots": [
+                        {
+                            "name": "OnOff",
+                            "type": "OnOff"
+                        },
+                        {
+                            "name": "Brightness",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Turn lights {OnOff} at {Brightness}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "OnOff",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "On"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "Off"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "RelativeDay",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "this month"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "this week"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "after tomorrow"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "tomorrow"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "today"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "TurnLightsBrightnessIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "OnOff",
+                            "type": "OnOff",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        },
+                        {
+                            "name": "Brightness",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {},
+                            "validations": [
+                                {
+                                    "type": "isGreaterThan",
+                                    "prompt": "Slot.Validation.1320124025906.59926268736.1071304652248",
+                                    "value": "0"
+                                },
+                                {
+                                    "type": "isLessThanOrEqualTo",
+                                    "prompt": "Slot.Validation.1320124025906.59926268736.1122692164679",
+                                    "value": "255"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "TurnLightsIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "OnOff",
+                            "type": "OnOff",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {}
+                        }
+                    ]
+                }
+            ]
+        },
+        "prompts": [
+            {
+                "id": "Slot.Validation.1320124025906.59926268736.1071304652248",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Brightness value should be greater than zero"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1320124025906.59926268736.1122692164679",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "Brithness value cannot be greater than two hundred fifty five"
+                    }
+                ]
+            }
+        ]
+    }
+}

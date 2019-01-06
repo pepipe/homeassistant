@@ -30,6 +30,26 @@ TurnLightsIntent:
     data:
       entity_id: light.innr
 
+#{OnOff} = On, Off
+#{Brightness} = 1 - 255 number
+#Utterances: "Alexa ask {invocation name} turn lighs {OnOff} at {Brightness}"
+TurnLightsBrightnessIntent:
+  speech:
+    text: Turning lights {{ OnOff }} at {Brightness}
+  card:
+    type: simple
+    title: Turn lights {{ OnOff }}
+    content: Ask Home Assistant to turn lights {{ OnOff }}
+  action:
+    service_template: >
+      light.turn_{{ OnOff }}
+    data_template:
+      entity_id: light.innr
+      brightness: >
+        {Brightness}
+      
+      
+
 ###########################################################
 #                                                         #
 #                  Custom Intents                         #
