@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "home assistant",
+            "invocationName": "home",
             "intents": [
                 {
                     "name": "TurnLightsIntent",
@@ -9,15 +9,52 @@
                         {
                             "name": "OnOff",
                             "type": "OnOff"
+                        },
+                        {
+                            "name": "Location",
+                            "type": "HomeLocation"
+                        },
+                        {
+                            "name": "Brightness",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "BrightnessConstant",
+                            "type": "BrightnessConstants"
                         }
                     ],
                     "samples": [
-                        "Turn lights {OnOff}"
+                        "turn {Location} lights {OnOff}",
+                        "turn lights {OnOff} in {Location}",
+                        "turn lights {OnOff} in {Location} room",
+                        "turn lights {OnOff}",
+                        "turn lights {OnOff} at {Brightness}",
+                        "turn lights {OnOff} at {Brightness} brightness",
+                        "turn {Location} lights {OnOff} at {Brightness}",
+                        "turn {Location} lights {OnOff} at {Brightness} brightness",
+                        "turn lights {OnOff} in {Location} at {Brightness}",
+                        "turn lights {OnOff} in {Location} at {Brightness} brightness",
+                        "turn lights {OnOff} in {Location} room at {Brightness}",
+                        "turn lights {OnOff} in {Location} room at {Brightness} brightness",
+                        "turn lights {OnOff} at {BrightnessConstant}",
+                        "turn lights {OnOff} at {BrightnessConstant} brightness",
+                        "turn lights {OnOff} in {Location} at {BrightnessConstant}",
+                        "turn lights {OnOff} in {Location} at {BrightnessConstant} brightness",
+                        "turn lights {OnOff} in {Location} room at {BrightnessConstant} brightness"
                     ]
                 },
                 {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
+                    "name": "TurnGoLightIntent",
+                    "slots": [
+                        {
+                            "name": "OnOff",
+                            "type": "OnOff"
+                        }
+                    ],
+                    "samples": [
+                        "turn go {OnOff}",
+                        "turn go light {OnOff}"
+                    ]
                 },
                 {
                     "name": "SmartestPersonIntent",
@@ -49,20 +86,8 @@
                     ]
                 },
                 {
-                    "name": "TurnLightsBrightnessIntent",
-                    "slots": [
-                        {
-                            "name": "OnOff",
-                            "type": "OnOff"
-                        },
-                        {
-                            "name": "Brightness",
-                            "type": "AMAZON.NUMBER"
-                        }
-                    ],
-                    "samples": [
-                        "Turn lights {OnOff} at {Brightness}"
-                    ]
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
                 }
             ],
             "types": [
@@ -110,23 +135,66 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "HomeLocation",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "bed"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "baby"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "living"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "BrightnessConstants",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "medium"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "min"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "minimum"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "max"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "maximum"
+                            }
+                        }
+                    ]
                 }
             ]
         },
         "dialog": {
             "intents": [
                 {
-                    "name": "TurnLightsBrightnessIntent",
+                    "name": "TurnLightsIntent",
                     "confirmationRequired": false,
                     "prompts": {},
                     "slots": [
-                        {
-                            "name": "OnOff",
-                            "type": "OnOff",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
-                        },
                         {
                             "name": "Brightness",
                             "type": "AMAZON.NUMBER",
@@ -145,20 +213,6 @@
                                     "value": "255"
                                 }
                             ]
-                        }
-                    ]
-                },
-                {
-                    "name": "TurnLightsIntent",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "OnOff",
-                            "type": "OnOff",
-                            "confirmationRequired": false,
-                            "elicitationRequired": false,
-                            "prompts": {}
                         }
                     ]
                 }

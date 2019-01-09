@@ -15,64 +15,96 @@
 #                  Commands Intents                       #
 #                                                         #
 ###########################################################
+#Description: This intent commands lights in the house.
 #{OnOff} = On, Off
-#Utterances: "Alexa ask {invocation name} turn lighs {OnOff}"
+#{Location} = bed, baby, living
+#{Brightness} = 1 - 255 number
+#{BrightnessConstant} = min, minimum, medium, max, maximum
+#Utterances:
+# "turn {Location} lights {OnOff}",
+# "turn lights {OnOff} in {Location}",
+# "turn lights {OnOff} in {Location} room",
+# "turn lights {OnOff}",
+# "turn lights {OnOff} at {Brightness}",
+# "turn lights {OnOff} at {Brightness} brightness",
+# "turn {Location} lights {OnOff} at {Brightness}",
+# "turn {Location} lights {OnOff} at {Brightness} brightness",
+# "turn lights {OnOff} in {Location} at {Brightness}",
+# "turn lights {OnOff} in {Location} at {Brightness} brightness",
+# "turn lights {OnOff} in {Location} room at {Brightness}",
+# "turn lights {OnOff} in {Location} room at {Brightness} brightness",
+# "turn lights {OnOff} at {BrightnessConstant}",
+# "turn lights {OnOff} at {BrightnessConstant} brightness",
+# "turn lights {OnOff} in {Location} at {BrightnessConstant}",
+# "turn lights {OnOff} in {Location} at {BrightnessConstant} brightness",
+# "turn lights {OnOff} in {Location} room at {BrightnessConstant} brightness"
 TurnLightsIntent:
   speech:
-    text: Turning lights {{ OnOff }}
-  card:
-    type: simple
-    title: Turn lights {{ OnOff }}
-    content: Ask Home Assistant to turn lights {{ OnOff }}
-  action:
-    service_template: >
-      light.turn_{{ OnOff }}
-    data:
-      entity_id: light.innr
-
-#{OnOff} = On, Off
-#{Brightness} = 1 - 255 number
-#Utterances: "Alexa ask {invocation name} turn lighs {OnOff} at {Brightness}"
-TurnLightsBrightnessIntent:
-  speech:
-    text: Turning lights {{ OnOff }} at {Brightness}
-  card:
-    type: simple
-    title: Turn lights {{ OnOff }}
-    content: Ask Home Assistant to turn lights {{ OnOff }}
+    type: ssml
+    text:
+      <speak>
+        Turning lights {{ OnOff }}
+        {%if Location is defined %}
+          in {{Location}} room
+        {% endif %}
+        {% if Brightness is defined %}
+          at {{Brightness}} brightness
+        {% endif %}
+        {% if BrightnessConstant is defined %}
+          at {{BrightnessConstant}} brightness
+        {% endif %}
+      </speak>
   action:
     service_template: >
       light.turn_{{ OnOff }}
     data_template:
-      entity_id: light.innr
+      entity_id: >
+        {% if Location == "baby" %}
+          light.go
+        {% else %}
+          light.innr
+        {% endif %}
       brightness: >
-        {Brightness}
-      
-      
+        {% if Brightness is defined %}
+          {{Brightness}}
+        {% endif %}
+        {% if BrightnessConstant is defined %}
+          {% if BrightnessConstant == "max" or BrightnessConstant =="maximum" %}
+            255
+          {% elif BrightnessConstant == "medium" %}
+            127
+          {% else %}
+            15
+          {% endif %}
+        {% endif %}
 
 ###########################################################
 #                                                         #
 #                  Custom Intents                         #
 #                                                         #
 ###########################################################
+#Description: This intent say who's the smartest person
 #Utterances: 
-#             "Alexa ask {invocation name} who's the smartest"
-#             "Alexa ask {invocation name} who's the smartest person"
+# "Alexa ask {invocation name} who's the smartest"
+# "Alexa ask {invocation name} who's the smartest person"
 SmartestPersonIntent:
   speech:
-    text: The smartest person in the house is <lang xml:lang="es">Felipe</lang>
+    text: The smartest person in the house is Felipe
 
+#Description: This intent say who's going to cook
 #{RelativeDay} = this month, this week, after tomorrow, tomorrow, today
-#Utterances: "Alexa ask {invocation name} who will cook {RelativeDay}"
+#Utterances: 
+# "Alexa ask {invocation name} who will cook {RelativeDay}"
 WhoWillCookIntent:
   speech:
     type: ssml
     text: <speak>Maria will cook {{ RelativeDay }}.<break time="1s"/><emphasis>Hahaha I got you.</emphasis><break time="0.2s"/>Of course it will be you Felipe.</speak>
 
+#Description: This intent say who's going to change baby diaper
 #Utterances: 
-#             "Alexa ask {invocation name} person to change diaper"
-#             "Alexa ask {invocation name} who will change diaper"
-#             "Alexa ask {invocation name} who will change next diaper"
+# "Alexa ask {invocation name} person to change diaper"
+# "Alexa ask {invocation name} who will change diaper"
+# "Alexa ask {invocation name} who will change next diaper"
 ChangeDiaperIntent:
   speech:
     type: ssml
