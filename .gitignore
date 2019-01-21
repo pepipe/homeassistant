@@ -10,3 +10,7 @@ know_devices.yaml
 *.log
 *.db
 .ios.conf
+
+#always changing files
+www/mqtt_graph.dot
+www/mqtt_graph.png
