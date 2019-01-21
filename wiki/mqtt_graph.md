@@ -105,3 +105,22 @@ We'll have now a new tab in HA frontend. For now it will point for an image that
               event: sunset
             action:
               service: shell_command.mosquitto_pub_mqtt_graph
+
+### Check how the graph image would be like
+Go to this [site](https://dreampuf.github.io/GraphvizOnline) and paste the following:
+
+        digraph G {
+        node[shape=record];
+          "0x00124b0018e1a529" [label="{0x00124b0018e1a529|Coordinator|No model information available|online}"];
+          "0x00124b0018e1a529" -> "0x00178801047a4992" [label="252"]
+          "0x00178801047a4992" [label="{0x00178801047a4992|Router|Philips Hue Go (7146060PH)|offline}"];
+          "0x00178801047a4992" -> "0x00124b0018e1a529" [label="25"]
+          "0x00158d0002b6cdaf" [label="{0x00158d0002b6cdaf|EndDevice|Xiaomi Aqara temperature, humidity and pressure sensor (WSDCGQ11LM)|online}"];
+          "0x00158d0002b6cdaf" -> "0x00178801047a4992" [label="252"]
+          "0x00158d0001975db1" [label="{0x00158d0001975db1|Router|Innr E27 Bulb warm dimming (RB 175 W)|offline}"];
+          "0x00158d0001975db1" -> "0x00178801047a4992" [label="252"]
+          "0x00158d000276c044" [label="{0x00158d000276c044|EndDevice|Xiaomi Aqara door & window contact sensor (MCCGQ11LM)|online}"];
+          "0x00158d000276c044" -> "0x00124b0018e1a529" [label="170"]
+          "0x00158d0002c61053" [label="{0x00158d0002c61053|EndDevice|Xiaomi Aqara double key wireless wall switch (WXKG02LM)|online}"];
+          "0x00158d0002c61053" -> "0x00124b0018e1a529" [label="170"]
+        }
