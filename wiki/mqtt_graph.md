@@ -99,7 +99,7 @@ We'll have now a new tab in HA frontend. For now it will point for an image that
 
         automation:
           - alias: Create MQTT Graph
-            initial_state: false
+            initial_state: true
             trigger:
               platform: sun
               event: sunset
