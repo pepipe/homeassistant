@@ -1,0 +1,8 @@
+###########################################################
+#                                                         #
+#                    Shell Commands                       #
+#                                                         #
+# https://www.home-assistant.io/components/shell_command/ #
+#                                                         #
+###########################################################
+mosquitto_pub_mqtt_graph: "mosquitto_pub -V mqttv311 -u homeassistant -P madi -t 'zigbee2mqtt/bridge/networkmap' -m graphviz"
