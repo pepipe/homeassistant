@@ -9,12 +9,11 @@
 #  This is in the old format. I used it because editor    #
 # removes comments and don't support data templates       #
 ###########################################################
-
-##########################################################
-#                                                        #
-#                       Doors                            #
-#                                                        #
-##########################################################
+###########################################################
+#                                                         #
+#                       Doors                             #
+#                                                         #
+###########################################################
 # Trigger for turning on one light when exit door is open
 - alias: Turn on light when exit door is open
   # Initial state after home assistant restart
@@ -53,12 +52,11 @@
   action:
     service: light.turn_off
     entity_id: light.innr
-
-##########################################################
-#                                                        #
-#                   Notifications                        #
-#                                                        #
-##########################################################
+###########################################################
+#                                                         #
+#                   Notifications                         #
+#                                                         #
+###########################################################
 # Trigger for sending a notification when exit door is open
 - alias: iOS notification when exit door is opened
   trigger:
@@ -90,11 +88,11 @@
     entity_id: light.innr
     service: light.turn_on
     
-##########################################################
-#                                                        #
-#                      Themes                            #
-#                                                        #
-##########################################################
+###########################################################
+#                                                         #
+#                      Themes                             #
+#                                                         #
+###########################################################
 # Sunset
 - alias: Random Darker Theme At Sunset
   initial_state: true

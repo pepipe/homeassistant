@@ -1,9 +1,9 @@
-##########################################################
-#                                                        #
-#             iOS component settings here                #
-#                                                        #
-#   https://www.home-assistant.io/docs/ecosystem/ios/    #
-##########################################################
+###########################################################
+#                                                         #
+#             iOS component settings here                 #
+#                                                         #
+#   https://www.home-assistant.io/docs/ecosystem/ios/     #
+###########################################################
 #push notification for when exit door is opened
 push:
   categories:
