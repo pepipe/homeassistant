@@ -54,6 +54,32 @@
     entity_id: light.innr
 ###########################################################
 #                                                         #
+#                     Switches                            #
+#                                                         #
+###########################################################    
+- alias: Aqara Double Switch - Left
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/0x00158d0002c61053'
+  condition:
+    condition: template
+    value_template: "{{ 'left' == trigger.payload_json.click }}"
+  action:
+    entity_id: light.innr
+    service: light.toggle
+      
+- alias: Aqara Double Switch - Right
+  trigger:
+    platform: mqtt
+    topic: 'zigbee2mqtt/0x00158d0002c61053'
+  condition:
+    condition: template
+    value_template: "{{ 'right' == trigger.payload_json.click }}"
+  action:
+    entity_id: light.go
+    service: light.toggle    
+###########################################################
+#                                                         #
 #                   Notifications                         #
 #                                                         #
 ###########################################################
@@ -87,7 +113,17 @@
   action:
     entity_id: light.innr
     service: light.turn_on
-    
+###########################################################
+#                                                         #
+#                    Shell Commands                       # #                                                         #
+###########################################################
+- alias: Create MQTT Graph
+  initial_state: true
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    service: shell_command.mosquitto_pub_mqtt_graph
 ###########################################################
 #                                                         #
 #                      Themes                             #

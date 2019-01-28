@@ -5,3 +5,26 @@
 #   https://www.home-assistant.io/components/script/      #
 #                                                         #
 ###########################################################
+###########################################################
+#                                                         #
+#                       Lights                            # #                                                         #
+###########################################################
+light_on:
+  sequence:
+    service: light.turn_on
+    data_template:
+      entity_id: "{{ light_entity_id }}"
+      brightness: "{{ light_brightness }}"
+        
+light_off:
+  sequence:
+    service: light.turn_off
+    data_template:
+      entity_id: "{{ light_entity_id }}"
+        
+light_toggle:
+  sequence:
+    service: light.toggle
+    data_template:
+      entity_id: "{{ light_entity_id }}"
+  

@@ -43,6 +43,19 @@ TurnLightsIntent:
     text:
       <speak>
         Turning lights {{ OnOff }}
+      </speak>
+  action:
+    service_template: >
+      light.turn_{{ OnOff }}
+    data:
+      entity_id: light.innr      
+        
+TurnLightsIntent_old:
+  speech:
+    type: ssml
+    text:
+      <speak>
+        Turning lights {{ OnOff }}
         {%if Location is defined %}
           in {{Location}} room
         {% endif %}
@@ -76,7 +89,19 @@ TurnLightsIntent:
             15
           {% endif %}
         {% endif %}
-
+        
+TurnGoLightIntent_forum:
+  action:
+    service_template: >
+      script.light_{{ OnOff | lower }}
+    data_template:
+      light_entity_id: light.go
+      light_brightness: >
+        {% if Brightness is defined %}
+          {{ Brightness }}
+        {% else %}
+          255
+        {% endif %}        
 ###########################################################
 #                                                         #
 #                  Custom Intents                         #

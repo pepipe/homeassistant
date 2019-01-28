@@ -159,3 +159,4 @@ intent_script: !include alexa_intent_scripts.yaml
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+shell_command: !include shell_commands.yaml
