@@ -5,3 +5,49 @@
 #    https://www.home-assistant.io/components/group/      #
 #                                                         #
 ###########################################################
+switches_view:
+  name: Switch
+  view: false
+  control: hidden
+  entities:
+    - switch.graphviz
+    - sensor.aqara_switch
+    - sensor.aqara_switch_bat
+
+climate_view:
+  name: Climate
+  #if view is set to true a tab will appear at the top of default view for the panel
+  view: false
+  control: hidden
+  icon: mdi:oil-temperature
+  entities:
+    - sensor.aqara_temp_sala
+    - sensor.aqara_temp_garrafeira
+    - sensor.aqara_temp_madi
+    - sensor.aqara_humidity_sala
+    - sensor.aqara_humidity_garrafeira
+    - sensor.aqara_humidity_madi
+    - sensor.aqara_pressure_sala
+    - sensor.aqara_pressure_garrafeira
+    - sensor.aqara_pressure_madi
+    - sensor.aqara_battery_sala
+    - sensor.aqara_battery_garrafeira
+    - sensor.aqara_battery_madi
+
+zigbee_sensors_view:
+  name: Zigbee Sensors
+  view: false
+  control: hidden
+  entities:
+    - binary_sensor.exit_door
+    - sensor.exit_door_battery
+
+people_view:
+  name: People
+  view: false
+  control: hidden
+  entities:
+    - device_tracker.felipes_iphone
+    - device_tracker.marias_iphone
+    - sensor.felipes_iphone_battery_level
+    - sensor.marias_iphone_battery_level
