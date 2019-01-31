@@ -67,8 +67,12 @@ frontend:
   themes: !include themes.yaml
      
 # Allows displaying links in frontend | https://www.home-assistant.io/components/weblink/
-# weblink:
-    
+weblink:
+  entities:
+    - name: Github Repo    
+      url: https://github.com/pepipe/homeassistant
+      icon: mdi:github-circle
+      
 # Allows adding panels to frontend in a iframe way without having to write the container code | https://www.home-assistant.io/components/panel_iframe/
 panel_iframe:
   zigbee_graph:
@@ -77,8 +81,8 @@ panel_iframe:
     icon: mdi:graphql
     
 # Allows adding panels to frontend running a full html page. Need a container code | https://www.home-assistant.io/components/panel_custom/
-# panel_custom:
-      
+#panel_custom:
+
 # Enables configuration UI in frontend | https://www.home-assistant.io/components/config/
 config:
 
