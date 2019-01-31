@@ -10,11 +10,34 @@
 ###########################################################
 ###########################################################
 #                                                         #
-#                       Scripts                           # #                                                         #
+#                    Default Groups                       #
+#                                                         #
+###########################################################
+# Uncomment this when adding new switches and wanted to see them in frontend default view
+group.all_switches:
+  friendly_name: Default Switch Group
+  icon: mdi:home
+  hidden: true
+###########################################################
+#                                                         #
+#                       Scripts                           #
+#                                                         #
 ###########################################################
 script.light_on:
   hidden: true
+
 script.light_off:
   hidden: true
+
 script.light_toggle:
-  hidden: true  
+  hidden: true
+###########################################################
+#                                                         #
+#                  Device Trackers                        #
+#                                                         #
+###########################################################
+device_tracker.felipes_iphone:
+  icon: mdi:account-circle
+
+device_tracker.marias_iphone:
+  icon: mdi:account-circle
