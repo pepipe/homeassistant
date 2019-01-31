@@ -26,14 +26,17 @@
     to: 'on'
   #create condition to trigger
   condition:
-  - after: sunset
-    after_offset: -01:00:00
-    before: sunrise
-    before_offset: 01:00:00
-    condition: sun
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: -01:00:00
+      - condition: sun
+        before: sunrise
+        before_offset: 01:00:00
   action:
     service: light.turn_on
-    entity_id: light.innr
+    entity_id: light.aqara_hall
 
 # Trigger for turning off one light after 5 minutes than exit door is open 
 - alias: Turn off light 5 minutes after exit door is open
@@ -43,15 +46,9 @@
     to: 'off'
     for:
       minutes: 5
-  condition:
-  - after: sunset
-    after_offset: -01:00:00
-    before: sunrise
-    before_offset: 01:00:00
-    condition: sun
   action:
     service: light.turn_off
-    entity_id: light.innr
+    entity_id: light.aqara_hall
 ###########################################################
 #                                                         #
 #                     Switches                            #
@@ -97,7 +94,7 @@
       data:
         push:
           category: 'exit_door'
-        #this doesn't work. don't know why. 
+        #this doesn't work and I don't know why. I needed to create another automation and in ios.yaml a call to the automation.
         # action_data:
           # entity_id: light.innr
           # service: light.turn_on
