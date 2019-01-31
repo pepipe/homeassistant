@@ -1,0 +1,13 @@
+Lights:
+Philips GO - 0x00178801047a4992
+INNR - 0x00158d0001975db1
+Aqara - 0x00158d0002c64064
+
+Switches:
+Aqara Double - 0x00158d0002c61053
+
+Sensors:
+Aqara temp 1 (Sala) - 0x00158d0002b6cdaf
+Aqara temp 2 (Garrafeira) - 0x00158d0002b6cde5
+Aqara temp 3 (Madi) - 0x00158d0002b5b680
+Aqara door/window (porta rua) - 0x00158d000276c044
