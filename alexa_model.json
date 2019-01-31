@@ -49,11 +49,37 @@
                         {
                             "name": "OnOff",
                             "type": "OnOff"
+                        },
+                        {
+                            "name": "Brightness",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "BrightnessConstant",
+                            "type": "BrightnessConstants"
+                        },
+                        {
+                            "name": "LightColor",
+                            "type": "Colors"
                         }
                     ],
                     "samples": [
                         "turn go {OnOff}",
-                        "turn go light {OnOff}"
+                        "turn go light {OnOff}",
+                        "turn go {OnOff} at {Brightness}",
+                        "turn go {OnOff} at {Brightness} brightness",
+                        "turn go light {OnOff} at {Brightness}",
+                        "turn go light {OnOff} at {Brightness} brightness",
+                        "turn go {OnOff} at {BrightnessConstant}",
+                        "turn go {OnOff} at {BrightnessConstant} brightness",
+                        "turn go light {OnOff} at {BrightnessConstant}",
+                        "turn go light {OnOff} at {BrightnessConstant} brightness",
+                        "make go brightness {Brightness}",
+                        "make go light brightness {Brightness}",
+                        "make go brightness {BrightnessConstant}",
+                        "make go light brightness {BrightnessConstant}",
+                        "make go color {LightColor}",
+                        "make go light color {LightColor}"
                     ]
                 },
                 {
@@ -96,12 +122,12 @@
                     "values": [
                         {
                             "name": {
-                                "value": "On"
+                                "value": "on"
                             }
                         },
                         {
                             "name": {
-                                "value": "Off"
+                                "value": "off"
                             }
                         }
                     ]
@@ -185,6 +211,41 @@
                             }
                         }
                     ]
+                },
+                {
+                    "name": "Colors",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "pink"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "red"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "blue"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "green"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "yellow"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "white"
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -215,8 +276,35 @@
                             ]
                         }
                     ]
+                },
+                {
+                    "name": "TurnGoLightIntent",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "Brightness",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": false,
+                            "prompts": {},
+                            "validations": [
+                                {
+                                    "type": "isGreaterThan",
+                                    "prompt": "Slot.Validation.1320124025906.59926268736.1071304652248",
+                                    "value": "0"
+                                },
+                                {
+                                    "type": "isLessThanOrEqualTo",
+                                    "prompt": "Slot.Validation.1320124025906.59926268736.1122692164679",
+                                    "value": "255"
+                                }
+                            ]
+                        }
+                    ]
                 }
-            ]
+            ],
+            "delegationStrategy": "SKILL_RESPONSE"
         },
         "prompts": [
             {

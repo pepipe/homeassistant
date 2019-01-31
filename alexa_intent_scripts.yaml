@@ -39,17 +39,18 @@
 # "turn lights {OnOff} in {Location} room at {BrightnessConstant} brightness"
 TurnLightsIntent:
   speech:
-    type: ssml
-    text:
-      <speak>
-        Turning lights {{ OnOff }}
-      </speak>
+    text: Turning lights {{ OnOff }}
+# This will show a card in alexa home page. It's optional
+  # card:
+    # type: simple
+    # title: Turn lights {{ OnOff }}
+    # content: Ask Home Assistant to turn lights {{ OnOff }}
   action:
-    service_template: >
+    service_template: > 
       light.turn_{{ OnOff }}
     data:
-      entity_id: light.innr      
-        
+      entity_id: light.innr
+
 TurnLightsIntent_old:
   speech:
     type: ssml
@@ -101,7 +102,7 @@ TurnGoLightIntent_forum:
           {{ Brightness }}
         {% else %}
           255
-        {% endif %}        
+        {% endif %}
 ###########################################################
 #                                                         #
 #                  Custom Intents                         #
