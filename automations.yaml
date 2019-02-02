@@ -39,13 +39,13 @@
     entity_id: light.aqara_hall
 
 # Trigger for turning off one light after 5 minutes than exit door is open 
-- alias: Turn off light 5 minutes after exit door is open
+- alias: Turn off light 3 minutes after exit door is open
   trigger:
     platform: state
     entity_id: binary_sensor.exit_door
     to: 'off'
     for:
-      minutes: 5
+      minutes: 3
   action:
     service: light.turn_off
     entity_id: light.aqara_hall
