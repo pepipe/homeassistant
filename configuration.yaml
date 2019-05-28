@@ -139,7 +139,8 @@ weather:
 
 # Text to speech | https://www.home-assistant.io/components/tts/
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
     
 
 # Media player settings | https://www.home-assistant.io/components/media_player/
