@@ -1,3 +1,10 @@
+felipes_mi8:
+  hide_if_away: false
+  icon:
+  mac:
+  name: felipes mi 8
+  picture:
+  track: true
 
 felipes_iphone:
   hide_if_away: false

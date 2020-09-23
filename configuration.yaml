@@ -100,6 +100,9 @@ history:
 # View all events in a logbook | https://www.home-assistant.io/components/logbook/
 logbook:
 
+#https://www.home-assistant.io/components/system_health/
+system_health:
+
 ###########################################################
 #                                                         #
 #                     Components                          #
@@ -133,9 +136,10 @@ switch:
   
 # Weather platform component | https://www.home-assistant.io/components/weather/
 # check a nice weather card https://www.reddit.com/r/homeassistant/comments/8dnxf0/easy_instructions_for_a_custom_weather_card/
-weather:
-  - platform: ipma
-    name: 'IPMA Weather'
+#
+#weather:
+#  - platform: ipma
+#    name: 'IPMA Weather'
 
 # Text to speech | https://www.home-assistant.io/components/tts/
 tts:

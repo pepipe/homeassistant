@@ -39,17 +39,28 @@
 # "turn lights {OnOff} in {Location} room at {BrightnessConstant} brightness"
 TurnLightsIntent:
   speech:
-    text: Turning lights {{ OnOff }}
-# This will show a card in alexa home page. It's optional
+    text: >
+      {% if Brightness is defined %}
+        Turning lights {{ OnOff }} at {{ Brightness }}
+      {% else %}
+        Turning lights {{ OnOff }}
+      {% endif %}
+  # This will show a card in alexa home page. It's optional
   # card:
     # type: simple
     # title: Turn lights {{ OnOff }}
     # content: Ask Home Assistant to turn lights {{ OnOff }}
   action:
-    service_template: > 
-      light.turn_{{ OnOff }}
-    data:
-      entity_id: light.innr
+    service_template: >
+      script.light_{{ OnOff }}
+    data_template:
+      light_entity_id: light.innr
+      light_brightness: >
+        {% if Brightness is defined %}
+          {{ Brightness }}
+        {% else %}
+          255
+        {% endif %}
 
 TurnLightsIntent_old:
   speech:
@@ -91,12 +102,19 @@ TurnLightsIntent_old:
           {% endif %}
         {% endif %}
         
-TurnGoLightIntent_forum:
+TurnLightsIntent_forum:
+  speech:
+    text: >
+      {% if Brightness is defined %}
+        Turning lights {{ OnOff }} at {{ Brightness }}
+      {% else %}
+        Turning lights {{ OnOff }}
+      {% endif %}
   action:
     service_template: >
-      script.light_{{ OnOff | lower }}
+      script.light_{{ OnOff }}
     data_template:
-      light_entity_id: light.go
+      light_entity_id: light.innr
       light_brightness: >
         {% if Brightness is defined %}
           {{ Brightness }}
